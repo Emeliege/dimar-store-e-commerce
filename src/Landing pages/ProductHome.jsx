@@ -1,9 +1,12 @@
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import Sidebar from "../Sidebar/Index";
+import MainContent from "../Components/MainContent";
+import ProductPage from "../Components/ProductPage";
+import TopSellers from "../Components/TopSellers";
+import { useState, useEffect } from "react";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 
-const ProductPage = () => {
+const App = () => {
   const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
@@ -14,54 +17,32 @@ const ProductPage = () => {
     }
   }, [darkMode])
 
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    if (id) {
-      axios
-        .get(`https://dummyjson.com/products/${id}`)
-        .then((response) => {
-          setProduct(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching product data: ", error);
-        });
-    }
-  }, [id]);
-
-  if (!product) return <div>Loading...</div>;
-
   return (
-    <div className="overflow-hidden p-8 w-auto dark:text-[#1bc8d3]">
-    <button
-      onClick={() => setDarkMode(!darkMode)}
-      className="absolute right-0 top-1 bg-black h-6 w-16 text-[9px] lg:text-[16px] lg:h-10 lg:w-[8rem] md:text-[13px] md:w-19 md:h-8 md:py-1 sm:text-[10px] sm:w-[5.5rem] sm:h-7 text-center text-black rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white
-               hover:bg-gray-300 dark:hover:bg-gray-600 hover:border-blue-500 transition-colors duration-200"
-    >
-      {darkMode ? '🔆 Light Mode' : '🌙 Dark Mode'}
-    </button>
+      <div>
+      <h1 className="overflow-hidden text-sm font-serif font-bold mt-2 ml-2 text-[#ffa31a] xl:text-[1.6rem] lg:text-2xl md:text-xl sm:text-xl">DIMAR STORE🛍️</h1>
+        <div className="flex dark:bg-neutral-900">
+          <Sidebar className="dark:text-neutral-300" />
+          <div className="w-auto flex justify-between flex-wrap">
+            <Routes>
+              <Route path="/" element={<MainContent />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+            </Routes>
+          </div>
+          <div className="absolute right-0 top-0 lg:top-2">
+            <TopSellers />
 
-      <button
-        onClick={() => navigate(-1)}
-        className="mb-3 ml-4 text-sm px-2 py-1 lg:text-xl xl:text-2xl 2xl:px-4 2xl:py-2 bg-black text-white rounded dark:text-black dark:bg-white"
-      >
-        Back
-      </button>
-      <img
-        src={product.images[0]}
-        alt={product.title}
-        className="w-[6rem] h-[6rem] mb-5 2xl:w-[19rem] 2xl:h-[19rem] xl:w-[16rem] xl:h-[16rem] lg:w-[13rem] lg:h-[13rem] md:w-[8rem] md:h-[8rem]"
-      />
-      <h1 className="text-sm mb-4 md:text-lg lg:text-xl xl:text-2xl 2xl:text-[1.8rem]  font-bold">{product.title}</h1>
-      <p className="mb-4 text-[10px] 2xl:text-2xl xl:text-xl lg:text-lg md:text-sm text-gray-700 w-[70%]">{product.description}</p>
-      <div className="flex text-[12px] 2xl:text-2xl xl:text-xl lg:text-lg md:text-sm">
-        <p>Price: ${product.price}</p>
-        <p className="ml-8 md:ml-16 lg:ml-[9rem] xl:ml-[19rem] 2xl:ml-[25rem]">Rating: {product.rating}</p>
-      </div>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="absolute right-0 top-1 bg-black h-6 w-16 text-[9px] lg:text-[16px] lg:h-10 lg:w-[8rem] md:text-[13px] md:w-19 md:h-8 md:py-1 sm:text-[10px] sm:w-[5.5rem] sm:h-7 text-center text-black rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white
+                         hover:bg-gray-300 dark:hover:bg-gray-600 hover:border-blue-500 transition-colors duration-200"
+              >
+                {darkMode ? '🔆 Light Mode' : '🌙 Dark Mode'}
+              </button>
+          </div>
+        </div>
+        
       {/* Newsletter */}
-      <div className="bg-gray-600 text-white py-16 mt-[10rem]">
+      <div className="bg-gray-600 text-white mt-[5rem] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-serif mb-4">Join Our Newsletter</h2>
           <p className="text-gray-400 mb-8">
@@ -71,9 +52,9 @@ const ProductPage = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-2 py-3 text-gray-900 focus:outline-none"
+              className="flex-1 px-4 py-3 text-gray-900 focus:outline-none"
             />
-            <button className="bg-white text-gray-900 px-2 py-1 ml-2 hover:bg-gray-100 transition-colors">
+            <button className="bg-white text-gray-900 px-8 py-3 ml-2 hover:bg-gray-100 transition-colors">
               Subscribe
             </button>
           </div>
@@ -84,7 +65,7 @@ const ProductPage = () => {
       <footer className="border-t">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
+            <div>
               <h3 className="text-lg font-medium mb-4 dark:text-[#1bc8d3]">About</h3>
               <ul className="space-y-2 text-gray-600 dark:text-neutral-300">
                 <li>
@@ -158,8 +139,9 @@ const ProductPage = () => {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
   );
 };
 
-export default ProductPage;
+export default App;
+

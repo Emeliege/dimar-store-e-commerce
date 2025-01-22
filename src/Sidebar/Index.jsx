@@ -21,8 +21,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-[2.3rem] mt-10 ml-[1px] p-1 sm:p-2 sm:w-[5.5rem] md:w-[6.5rem] lg:w-[11rem] xl:p-3 xl:w-[13rem] h-screen">
-      <section className="space-y-3  text-[7px] md:text-[12px] xl:text-[19px] lg:text-[15px] sm:text-[12px]">
+    <div className="w-[3rem] mt-10 ml-[1px] p-1 sm:p-2 sm:w-[5.5rem] md:w-[6.5rem] lg:w-[11rem] xl:p-3 xl:w-[13rem] h-screen">
+      <section className="space-y-3  text-[10px] md:text-[12px] xl:text-[19px] lg:text-[15px] sm:text-[12px]">
         <SearchInput />
         <Categories />
         <Keywords />

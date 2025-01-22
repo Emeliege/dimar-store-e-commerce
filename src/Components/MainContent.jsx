@@ -141,7 +141,7 @@ const MainContent = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 mr-[5.4rem] sm:grid-cols-3 md:grid-cols-4 gap-5 xl:mr-[6.7rem] xl:mt-[-1.2rem] 2xl:w-[65rem] lg:mr-[12.8rem] md:p-0 md:mr-[7.3rem] sm:p-1 sm:mr-[10.2rem] h-full xl:p-5">
+        <div className="grid grid-cols-2 gap-3 ml-[0.5rem] sm:grid-cols-3 sm:gap-x-[1px] md:grid-cols-3 lg:grid-cols-4 xl:mr-[5.6rem] xl:mt-[-1.2rem] 2xl:w-[65rem] lg:mr-[11rem] md:p-0 md:mr-[5.7rem] sm:p-1 sm:mr-[10.2rem] h-full xl:p-5">
           {filteredProducts.map((product) => (
             <BookCard
               key={product.id}
@@ -153,7 +153,7 @@ const MainContent = () => {
           ))}
         </div>
 
-        <div className="flex flex-col mt-2 text-[12px] justify-between xl:text-2xl xl:mx-20 lg:text-lg lg:mx-16 md:mx-11 md:text-sm sm:flex-row sm:mx-9 sm:text-sm items-center">
+        <div className="flex flex-col mt-2 text-[12px] justify-between xl:text-2xl xl:mx-20 lg:text-lg lg:mx-16 md:mx-11 md:text-sm sm:flex-row sm:mx-[4rem] sm:text-sm items-center">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}

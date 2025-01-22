@@ -24,7 +24,7 @@ export const Categories = () => {
 
   return (
     <div className="dark:text-neutral-300">
-      <h2 className="text-[9px] font-semibold mt-3 mb-1 sm:text-lg sm:mb-4 sm:mt-7 md:text-xl lg:text-2xl xl:text-[1.8rem] text-[#1bc8d3] md:mb-4 dark:text-neutral-300">Categories</h2>
+      <h2 className="font-semibold font-serif mt-3 mb-1 sm:text-lg sm:mb-4 sm:mt-7 md:text-xl lg:text-2xl xl:text-[1.5rem] text-[#1bc8d3] md:mb-4 dark:text-neutral-300">Categories</h2>
       <div>
         {categories.map((category, index) => (
           <label key={index} className="block mb-2 md:mb-3 lg:p-[0.2rem]">
